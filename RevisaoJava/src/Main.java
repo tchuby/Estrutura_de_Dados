@@ -4,7 +4,7 @@ public class Main {
 
     private static Scanner _reader = new Scanner(System.in);
     public static void main(String[] args) {
-        somaDosElementosDoVetor();
+        imprimirPares();
         _reader.close();
     }
 
@@ -37,7 +37,29 @@ public class Main {
     }
 
     public static void imprimirPares(){
+        boolean controle = true;
+        String[] entradas;
+        int tamanhoEntrada = 0;
 
+        printLn("Digite números separados por espaço: ");
+
+        entradas = _reader.nextLine().split(" ");
+        tamanhoEntrada = entradas.length;
+
+
+        int vetor[] = new int[tamanhoEntrada];
+
+        StringBuilder pares = new StringBuilder();
+
+        for(int i = 0; i < tamanhoEntrada; i++ ){
+            vetor[i] = validateInteger(entradas[i]);
+            if((vetor[i]%2)==0){
+                pares.append(" "+ vetor[i]);
+            }
+        }
+
+        printLn("Dentre os números " + vetorToString(vetor)
+                + " são pares os seguintes {" + pares + " }");
     }
 
     public static String vetorToString(int[] vetor){
