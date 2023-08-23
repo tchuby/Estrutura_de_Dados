@@ -1,0 +1,7 @@
+Encontrar endereço do elemento de um  array:
+Quando um vetor
+@origem + i * (tamanho do dado);
+
+Quando uma matriz
+@origem + i * (tamanho do dado) + j * (tamanho do dado);
+
