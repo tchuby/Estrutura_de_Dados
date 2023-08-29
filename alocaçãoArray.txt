@@ -1,7 +1,18 @@
+int vetor[] = new int[10];
+
+int matriz[][] = new int[2][4];
+
 Encontrar endereço do elemento de um  array:
 Quando um vetor
 @origem + i * (tamanho do dado);
 
 Quando uma matriz
 @origem + i * (tamanho do dado) + j * (tamanho do dado);
+
+boolean 1 bit
+byte 8 bits
+short 16 bits
+int 32 bits
+long 64 bits
+
 

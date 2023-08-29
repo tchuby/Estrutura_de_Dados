@@ -1,0 +1,7 @@
+- FileInputStream e FileOutputStream para leitura e escrita
+de arquivos vistos como uma sequência de bytes
+
+- FileReader e FileWriter para leitura e escrita de arquivos
+vistos como uma sequência de caracteres
+
+Arquivos e diretórios podem ser representados através da classe File
