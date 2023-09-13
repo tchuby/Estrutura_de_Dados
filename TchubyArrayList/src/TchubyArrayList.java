@@ -28,7 +28,7 @@ public class TchubyArrayList {
      * Retorna verdadeiro se foi possível e falso se não foi possível
      * adicioná-lo.
      */
-    public boolean add(Integer value){
+    public boolean add(Integer valor){
         if(this.isFull()){
             return false;
         }
@@ -36,19 +36,42 @@ public class TchubyArrayList {
             resizeArrayList();
         }
 
-        array[this.counter] = value;
+        array[this.counter] = valor;
 
         this.counter++;
 
         return true;
     }
 
-    public boolean add(int index, Integer value){
+    public boolean add(int indice, Integer valor){
+        //Continuar, ainda não foram cobertos todos
+        //os possíveis cenários;
+
+        if(this.isFull()){
+            return false;
+        }
+        else if(resizable){
+            resizeArrayList();
+        }
+        else if(indice < 0 || indice >= array.length){
+            return false;
+        }
+
+        int auxiliar = counter + 1;
+
+        for(; auxiliar > indice; auxiliar--){
+            this.array[auxiliar] = this.array[auxiliar - 1];
+        }
+
+        array[indice] = valor;
+
+        this.counter++;
+
         return true;
     }
 
     private void resizeArrayList(){
-        var arraySize = array.length;
+        int arraySize = array.length;
 
         Integer[] newSizeArray = new Integer[arraySize + this.X];
 
@@ -60,10 +83,10 @@ public class TchubyArrayList {
     }
 
     public Integer remove(int indice){
-        if(indice < 0 || indice >= counter){
+        if(!validarIndice(indice)){
             return null;
         }
-        var valorRemovido = array[indice];
+        Integer valorRemovido = array[indice];
 
         counter--;
 
@@ -74,9 +97,9 @@ public class TchubyArrayList {
         return valorRemovido;
     }
 
-    public boolean removeFirst(Integer number){
+    public boolean removeFirst(Integer valor){
         for(int i = 0; i < counter; i++){
-            if(array[i].equals(number)){
+            if(array[i].equals(valor)){
                 remove(i);
                 return true;
             }
@@ -85,7 +108,7 @@ public class TchubyArrayList {
     }
 
     public Integer get(int indice){
-        if(indice >= 0 && indice < this.counter){
+        if(validarIndice(indice)){
             return this.array[indice];
         }
 
@@ -99,16 +122,16 @@ public class TchubyArrayList {
             this.array = new Integer[this.initialCapacity];
     }
 
-    public Integer set(int index, Integer number){
-        if(index >= counter || index < 0){
+    public Integer set(int indice, Integer number){
+        if(!validarIndice(indice)){
             return null;
         }
 
-        var replaced = array[index];
+        Integer alterado = array[indice];
 
-        array[index] = number;
+        array[indice] = number;
 
-        return replaced;
+        return alterado;
     }
 
     public int size(){
@@ -128,16 +151,31 @@ public class TchubyArrayList {
         }
     }
 
-    public boolean contains(){
+    public boolean contains(Integer valor){
+        for(int i = 0; i < counter; i++){
+            if(array[i].equals(valor)){
+                return true;
+            }
+        }
         return false;
     }
 
-    public int indexOf(Integer object){
-        return 0;
+    public int indexOf(Integer valor){
+        for(int i = 0; i < counter; i++){
+            if(array[i].equals(valor)){
+                return i;
+            }
+        }
+        return -1;
     }
 
-    public int lastIndexOf(Integer object){
-        return 0;
+    public int lastIndexOf(Integer valor){
+        for(int i = counter; i >= 0; i--){
+            if(array[i].equals(valor)){
+                return i;
+            }
+        }
+        return -1;
     }
 
     public Integer[] toArray(){
@@ -147,10 +185,17 @@ public class TchubyArrayList {
 
     @Override
     public String toString(){
-        var saida = "";
+        String saida = "";
         for(int i = 0; i < counter; i++){
             saida += array[i] + " ";
         }
         return saida;
+    }
+
+    private boolean validarIndice(int index){
+        if(index >= counter || index < 0){
+            return false;
+        }
+        return true;
     }
 }
