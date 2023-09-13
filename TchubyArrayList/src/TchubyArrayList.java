@@ -12,7 +12,13 @@ public class TchubyArrayList {
         this.initialCapacity = this.X;
         this.counter = 0;
         this.array = new Integer[this.X];
-        this.resizable = false;
+    }
+
+    public TchubyArrayList(boolean isResizeble){
+        this.initialCapacity = this.X;
+        this.counter = 0;
+        this.array = new Integer[this.X];
+        this.resizable = isResizeble;
     }
 
     /**
@@ -21,14 +27,13 @@ public class TchubyArrayList {
      * por redimensionar o array.
      * Retorna verdadeiro se foi possível e falso se não foi possível
      * adicioná-lo.
-     *
      */
     public boolean add(Integer value){
-        if(resizable){
-            resizeArrayList();
-        }
-        else if(this.counter == array.length){
+        if(this.isFull()){
             return false;
+        }
+        else if(resizable){
+            resizeArrayList();
         }
 
         array[this.counter] = value;
@@ -41,26 +46,44 @@ public class TchubyArrayList {
     public boolean add(int index, Integer value){
         return true;
     }
+
     private void resizeArrayList(){
-        //foo...
+        var arraySize = array.length;
+
+        Integer[] newSizeArray = new Integer[arraySize + this.X];
+
+        for(int i = 0; i < array.length; i++){
+            newSizeArray[i] = this.array[i];
+        }
+
+        array = newSizeArray;
     }
+
     public Integer remove(int indice){
         if(indice < 0 || indice >= counter){
             return null;
         }
         var valorRemovido = array[indice];
 
-        for(; indice < counter -1; indice++){
+        counter--;
+
+        for(; indice < counter; indice++){
             array[indice] = array[indice + 1];
         }
 
-        counter--;
-
         return valorRemovido;
     }
-    public boolean removeFirst(Integer objeto){
-        return true;
+
+    public boolean removeFirst(Integer number){
+        for(int i = 0; i < counter; i++){
+            if(array[i].equals(number)){
+                remove(i);
+                return true;
+            }
+        }
+        return false;
     }
+
     public Integer get(int indice){
         if(indice >= 0 && indice < this.counter){
             return this.array[indice];
@@ -68,34 +91,60 @@ public class TchubyArrayList {
 
         return null;
     }
-    public void clear(){
 
+    public void clear(){
+        this.counter = 0;
+
+        if(resizable)
+            this.array = new Integer[this.initialCapacity];
     }
-    public Integer set(int index, Integer objeto){
-        return 0;
+
+    public Integer set(int index, Integer number){
+        if(index >= counter || index < 0){
+            return null;
+        }
+
+        var replaced = array[index];
+
+        array[index] = number;
+
+        return replaced;
     }
+
     public int size(){
         return this.counter;
     }
+
     public boolean isEmpty(){
         return this.counter == 0;
     }
+
     public boolean isFull(){
-        return false;
+        if(resizable){
+            return false;
+        }
+        else{
+            return counter == array.length;
+        }
     }
+
     public boolean contains(){
         return false;
     }
+
     public int indexOf(Integer object){
         return 0;
     }
+
     public int lastIndexOf(Integer object){
         return 0;
     }
+
     public Integer[] toArray(){
         Integer novoArray[] = new Integer[10];
         return novoArray;
     }
+
     @Override
     public String toString(){
         var saida = "";
