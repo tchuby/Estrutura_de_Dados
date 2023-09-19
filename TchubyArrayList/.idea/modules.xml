@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TchubyArrayList.iml" filepath="$PROJECT_DIR$/TchubyArrayList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TchubyLists.iml" filepath="$PROJECT_DIR$/TchubyLists.iml" />
     </modules>
   </component>
 </project>

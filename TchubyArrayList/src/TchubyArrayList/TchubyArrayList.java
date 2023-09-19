@@ -1,3 +1,5 @@
+package TchubyArrayList;
+
 /**
  * Lista com alocação de memória contígua.
  */
