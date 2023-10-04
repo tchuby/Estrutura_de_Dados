@@ -32,7 +32,45 @@ public class TchubyLinkedList {
     }
 
     public Integer remove(int position){
-        return 0;
+        if(this.counter == 0 || position >= this.counter)
+            return null;
+
+
+        Node aux = this.first;
+
+        Node previous = null;
+        Node removed = null;
+        int iteration = 0;
+
+        if(position == 0){
+            removed = this.first;
+            this.first = this.first.getNext();
+            this.counter--;
+            return removed.getInformation();
+        }
+
+        while(iteration <= position)
+        {
+            if(iteration == position){
+                removed = aux;
+            }
+            else{
+                previous = aux;
+                aux = aux.getNext();
+            }
+
+            iteration++;
+        };
+
+        if(previous != null){
+            if(removed.getNext() == null){
+                this.last = previous;
+            }
+            previous.setNext(removed.getNext());
+        }
+
+        this.counter--;
+        return removed.getInformation();
     }
 
     public boolean removeFirst(Integer value){

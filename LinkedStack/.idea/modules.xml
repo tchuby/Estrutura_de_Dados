@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LinkedFiFo.iml" filepath="$PROJECT_DIR$/LinkedFiFo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LinkedStack.iml" filepath="$PROJECT_DIR$/LinkedStack.iml" />
     </modules>
   </component>
 </project>

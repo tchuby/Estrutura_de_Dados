@@ -3,7 +3,7 @@ import TchubyLinkedList.TchubyLinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        arrayListTest();
+        linkedListTest();
     }
 
     private static void arrayListTest(){
@@ -43,6 +43,7 @@ public class Main {
     }
 
     private static void linkedListTest(){
+
         TchubyLinkedList list = new TchubyLinkedList();
 
         list.add(8);
@@ -53,6 +54,11 @@ public class Main {
             print("" + list.get(i));
         }
 
+        list.remove(2);
+
+        for(int i = 0; i < list.size(); i++){
+            print("" + list.get(i));
+        }
     }
 
     private static void print(String message){
